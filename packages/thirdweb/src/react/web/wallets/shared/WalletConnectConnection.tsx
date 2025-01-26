@@ -52,31 +52,32 @@ export const WalletConnectConnection: React.FC<{
             const preferNative =
               walletInfo.mobile.native || walletInfo.mobile.universal;
             try {
-              if (isMobile()) {
-                if (isAndroid()) {
-                  if (preferNative) {
-                    openWindow(
-                      formatWalletConnectUrl(preferNative, uri).redirect,
-                    );
-                  }
-                } else if (isIOS()) {
-                  if (preferNative) {
-                    openWindow(
-                      formatWalletConnectUrl(preferNative, uri).redirect,
-                    );
-                  }
-                } else {
-                  const preferUniversal =
-                    walletInfo.mobile.universal || walletInfo.mobile.native;
-                  if (preferUniversal) {
-                    openWindow(
-                      formatWalletConnectUrl(preferUniversal, uri).redirect,
-                    );
-                  }
-                }
-              } else {
-                setQrCodeUri(uri);
-              }
+              // if (isMobile()) {
+              //   if (isAndroid()) {
+              //     if (preferNative) {
+              //       openWindow(
+              //         formatWalletConnectUrl(preferNative, uri).redirect,
+              //       );
+              //     }
+              //   } else if (isIOS()) {
+              //     if (preferNative) {
+              //       openWindow(
+              //         formatWalletConnectUrl(preferNative, uri).redirect,
+              //       );
+              //     }
+              //   } else {
+              //     const preferUniversal =
+              //       walletInfo.mobile.universal || walletInfo.mobile.native;
+              //     if (preferUniversal) {
+              //       openWindow(
+              //         formatWalletConnectUrl(preferUniversal, uri).redirect,
+              //       );
+              //     }
+              //   }
+              // } else {
+              //   setQrCodeUri(uri);
+              // }
+              setQrCodeUri(uri);
             } catch {
               setErrorConnecting(true);
             }
@@ -111,27 +112,27 @@ export const WalletConnectConnection: React.FC<{
     connect();
   }, [connect]);
 
-  if (isMobile()) {
-    return (
-      <ConnectingScreen
-        locale={{
-          getStartedLink: locale.getStartedLink,
-          instruction: locale.connectionScreen.instruction,
-          tryAgain: locale.connectionScreen.retry,
-          inProgress: locale.connectionScreen.inProgress,
-          failed: locale.connectionScreen.failed,
-        }}
-        onBack={onBack}
-        walletName={walletInfo.name}
-        walletId={wallet.id}
-        errorConnecting={errorConnecting}
-        onRetry={connect}
-        onGetStarted={onGetStarted}
-        client={props.client}
-        size={props.size}
-      />
-    );
-  }
+  // if (isMobile()) {
+  //   return (
+  //     <ConnectingScreen
+  //       locale={{
+  //         getStartedLink: locale.getStartedLink,
+  //         instruction: locale.connectionScreen.instruction,
+  //         tryAgain: locale.connectionScreen.retry,
+  //         inProgress: locale.connectionScreen.inProgress,
+  //         failed: locale.connectionScreen.failed,
+  //       }}
+  //       onBack={onBack}
+  //       walletName={walletInfo.name}
+  //       walletId={wallet.id}
+  //       errorConnecting={errorConnecting}
+  //       onRetry={connect}
+  //       onGetStarted={onGetStarted}
+  //       client={props.client}
+  //       size={props.size}
+  //     />
+  //   );
+  // }
 
   return (
     <ScanScreen
